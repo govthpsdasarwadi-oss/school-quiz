@@ -7,41 +7,37 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap');
 * { box-sizing: border-box; font-family: 'Baloo 2', cursive; }
-body {
-    margin:0; padding:10px;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color:white; min-height:100vh; display:flex; flex-direction:column; align-items:center;
-    overflow-x:hidden;
-}
-.school-name { text-align:center; color:#ffea00; font-size:1.8rem; margin-bottom:5px; text-shadow:2px 2px 4px rgba(0,0,0,0.5); }
-.sub-title { text-align:center; font-size:1.2rem; margin-bottom:15px; color:#00ffcc; }
+body { margin:0; padding:10px; background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); color:white; min-height:100vh; display:flex; flex-direction:column; align-items:center; overflow-x:hidden; }
+#password-screen, #quiz-ui { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; max-width:600px; margin-top:50px; }
+#password-screen input { padding:10px; font-size:1rem; border-radius:8px; border:none; margin-bottom:10px; width:80%; text-align:center; }
+#password-screen button { padding:10px 20px; font-size:1rem; cursor:pointer; border-radius:8px; border:none; background-color:#ffea00; color:#000; font-weight:bold; }
+#password-screen p { color:#ff4d4d; margin-top:10px; text-align:center; }
+
+.school-name { text-align:center; color:#ffea00; font-size:1.8rem; margin-bottom:5px; text-shadow:2px 2px 4px rgba(0,0,0,0.5);}
+.sub-title { text-align:center; font-size:1.2rem; margin-bottom:15px; color:#00ffcc;}
 .main-layout { display:flex; align-items:center; justify-content:center; width:100%; max-width:1200px; gap:20px; }
 .side-animation { align-self:center; }
-@media(max-width:900px){ .side-animation{display:none;} }
-.quiz-container {
-    background: rgba(255,255,255,0.1); backdrop-filter:blur(15px); padding:20px;
-    border-radius:20px; width:100%; max-width:650px; border:1px solid rgba(255,255,255,0.2);
-    box-shadow:0 10px 30px rgba(0,0,0,0.5); flex-shrink:0;
-}
-.score-box { display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.4); padding:10px 15px; border-radius:15px; margin-bottom:10px; }
+@media (max-width:900px) { .side-animation { display:none; } }
+.quiz-container { background: rgba(255,255,255,0.1); backdrop-filter:blur(15px); padding:20px; border-radius:20px; width:100%; max-width:650px; border:1px solid rgba(255,255,255,0.2); box-shadow:0 10px 30px rgba(0,0,0,0.5); flex-shrink:0;}
+.score-box { display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.4); padding:10px 15px; border-radius:15px; margin-bottom:7px; }
 .team-container { display:flex; align-items:center; gap:10px; flex:1; }
 .girls-side { flex-direction:row-reverse; }
 .team-img { width:55px; height:75px; object-fit:cover; border-radius:8px; border:2px solid #fff; background:#fff; }
 .name-score { text-align:center; }
 .score-label { font-size:0.9rem; font-weight:bold; color:#ffea00; display:block; }
 .score-val { font-size:2rem; font-weight:bold; display:block; }
-.always-reset { background:#ff4b2b;color:white;border:2px solid white;border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:1.1rem;transition:0.3s;margin:0 10px; display:flex; align-items:center; justify-content:center; }
-.q-counter { text-align:right; font-size:0.9rem; color:#ffea00; margin-bottom:8px; }
-.turn-indicator { text-align:center; padding:8px; font-weight:bold; border-radius:10px; margin-bottom:15px; font-size:1.1rem; }
-.question { font-size:1.4rem; margin-bottom:20px; text-align:center; min-height:60px; }
+.always-reset { background:#ff4b2b; color:white; border:2px solid white; border-radius:50%; width:40px; height:40px; cursor:pointer; font-size:1.1rem; transition:0.3s; margin:0 10px; display:flex; align-items:center; justify-content:center; }
+.q-counter { text-align:right; font-size:0.9rem; color:#ffea00; margin-bottom:5px; }
+.turn-indicator { text-align:center; padding:8px; font-weight:bold; border-radius:10px; margin-bottom:8px; font-size:1.1rem; }
+.question { font-size:1.4rem; margin-bottom:8px; text-align:center; min-height:20px; }
 .options { display:grid; grid-template-columns:1fr; gap:10px; }
 .options button { padding:15px; border-radius:10px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); color:white; cursor:pointer; text-align:left; font-size:1.1rem; transition:0.2s; }
 .correct-ans { background-color:#28a745 !important; border:2px solid #fff !important; }
 .wrong-ans { background-color:#dc3545 !important; }
-#final-screen { display:none; text-align:center; padding:30px; position:relative; }
-#winner-text { font-size:4rem; font-weight:bold; color:#ffea00; text-shadow:0 0 20px #ffea00,0 0 40px #ffea00,0 0 60px #ffea00; animation:glow 1s infinite alternate; margin-bottom:20px; }
-@keyframes glow { 0% { transform:scale(1); text-shadow:0 0 20px #ffea00,0 0 40px #ffea00,0 0 60px #ffea00; } 50% { transform:scale(1.2); text-shadow:0 0 50px #ffea00,0 0 80px #ffea00,0 0 120px #ffea00; } 100% { transform:scale(1); text-shadow:0 0 20px #ffea00,0 0 40px #ffea00,0 0 60px #ffea00; } }
-#fireworks-container { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:9999; }
+#final-screen { display:none; text-align:center; padding:30px; }
+#winner-text { font-size:4rem; font-weight:bold; color:#ff0; text-shadow:0 0 20px #ff0,0 0 40px #ff0,0 0 60px #ff0,0 0 80px #ff0,0 0 100px #ff0; animation:glowPulse 1s infinite alternate; margin-bottom:20px; }
+@keyframes glowPulse { 0% { transform:scale(1); text-shadow:0 0 20px #ff0,0 0 40px #ff0,0 0 60px #ff0,0 0 80px #ff0,0 0 100px #ff0; } 50% { transform:scale(1.2); text-shadow:0 0 50px #ff0,0 0 80px #ff0,0 0 120px #ff0,0 0 160px #ff0,0 0 200px #ff0; } 100% { transform:scale(1); text-shadow:0 0 20px #ff0,0 0 40px #ff0,0 0 60px #ff0,0 0 80px #ff0,0 0 100px #ff0; } }
+#fireworks-container { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:99999; }
 .firework, .spark { position:absolute; border-radius:50%; }
 .firework { width:8px; height:8px; }
 .spark { width:3px; height:3px; opacity:0.9; }
@@ -49,12 +45,18 @@ body {
 </head>
 <body>
 
+<div id="password-screen">
+  <input type="password" id="quiz-password" placeholder="Enter Password">
+  <button onclick="checkPassword()">Start Quiz</button>
+  <p id="pw-error"></p>
+</div>
+
+<div id="main-content" style="display:none;">
 <div class="school-name">ಸರಕಾರಿ ಹಿರಿಯ ಪ್ರಾಥಮಿಕ ಶಾಲೆ ದಾಸರವಾಡಿ</div>
 <div class="sub-title">🏆 ಮಕ್ಕಳ ರಸಪ್ರಶ್ನೆ ಸ್ಪರ್ಧೆ 🏆</div>
 
 <div class="main-layout">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgbEjOSIfQ_6PXfH2-zo1KRSWvnHIY9fxXJ7KPo0NmYdo4YWvwoeOzl6CM4gGuSUohNez3H1c1Oq0OCt1dQLwppKZQfd9Iruy5IK05wpMNGlyEVt6wpo2hk8xtWAyz0erIje2TtPhccEERmn4ABlqqICKZ_3g5Py79-M0qNzaLNsE8GAjry0kq2UJAErWNl/s400/vecteezy_happy-schoolboy-holding-book-backpack-ready-for-class_56613868.png" class="side-animation" alt="Boy">
-
     <div class="quiz-container">
         <div class="score-box">
             <div class="team-container">
@@ -82,9 +84,9 @@ body {
         </div>
 
         <div id="final-screen">
-            <h1 id="winner-text"></h1>
-            <p id="total-score-text" style="font-size:1.5rem;"></p>
-            <button onclick="resetQuizData()" style="padding:10px 30px; border-radius:50px; cursor:pointer; background:#ffea00; border:none; font-weight:bold;">ಮತ್ತೆ ಆಟವಾಡಿ</button>
+            <h1 id="winner-text" style="color: #ffea00;"></h1>
+            <p id="total-score-text" style="font-size: 1.5rem;"></p>
+            <button onclick="resetQuizData()" style="padding: 10px 30px; border-radius: 50px; cursor: pointer; background: #ffea00; border: none; font-weight: bold;">ಮತ್ತೆ ಆಟವಾಡಿ</button>
         </div>
     </div>
 
@@ -93,11 +95,25 @@ body {
 
 <div id="fireworks-container"></div>
 <audio id="fw-sound" src="https://www.soundjay.com/explosion/explosion-03.mp3" preload="auto"></audio>
+</div>
 
 <script>
-// ... (All your quizData and functions remain exactly the same as before) ...
-    const quizData = [
-        {q: "ಭಾರತದ ರಾಷ್ಟ್ರಪತಿ ಯಾರು?", o: ["ನರೇಂದ್ರ ಮೋದಿ", "ದ್ರೌಪದಿ ಮುರ್ಮು", "ಅಮಿತ್ ಶಾ", "ರಾಮನಾಥ್ ಕೋವಿಂದ್"], a: "ದ್ರೌಪದಿ ಮುರ್ಮು"},
+// Password
+const QUIZ_PASSWORD = "8151004545";
+function checkPassword(){
+    const pw = document.getElementById("quiz-password").value;
+    if(pw === QUIZ_PASSWORD){
+        document.getElementById("password-screen").style.display="none";
+        document.getElementById("main-content").style.display="block";
+        loadQuestion();
+    } else {
+        document.getElementById("pw-error").innerText = "Incorrect password!";
+    }
+}
+
+// Quiz logic
+const quizData = [
+        {q: "ಭಾರತದ ರಾಷ್ಟ್ರಪತಿ ಯಾರು?",o: ["ನರೇಂದ್ರ ಮೋದಿ", "ದ್ರೌಪದಿ ಮುರ್ಮು", "ಅಮಿತ್ ಶಾ", "ರಾಮನಾಥ್ ಕೋವಿಂದ್"], a: "ದ್ರೌಪದಿ ಮುರ್ಮು"},
         {q: "ಕರ್ನಾಟಕದ ರಾಜಧಾನಿ ಯಾವುದು?", o: ["ಮೈಸೂರು", "ಬೆಂಗಳೂರು", "ಹುಬ್ಬಳ್ಳಿ", "ಧಾರವಾಡ"], a: "ಬೆಂಗಳೂರು"},
         {q: "ಕನ್ನಡ ಸಾಹಿತ್ಯದ 'ಆದಿಕವಿ' ಯಾರು?", o: ["ರನ್ನ", "ಪಂಪ", "ಪೊನ್ನ", "ಕುಮಾರವ್ಯಾಸ"], a: "ಪಂಪ"},
         {q: "ಭೂಮಿಯ ಮೇಲೆ ಅತಿ ದೊಡ್ಡ ಖಂಡ ಯಾವುದು?", o: ["ಏಷ್ಯಾ", "ಆಫ್ರಿಕಾ", "ಯುರೋಪ್", "ಅಮೆರಿಕಾ"], a: "ಏಷ್ಯಾ"},
@@ -198,7 +214,6 @@ body {
         {q: "ಗಣಕಯಂತ್ರದ ಪಿತಾಮಹ ಎಂದು ಯಾರನ್ನು ಕರೆಯುತ್ತಾರೆ?", o: ["ಬಿಲ್ ಗೇಟ್ಸ್", "ಚಾರ್ಲ್ಸ್ ಬ್ಯಾಬೇಜ್", "ಮಾರ್ಕ್ ಜುಕರ್ಬರ್ಗ್", "ನ್ಯೂಟನ್"], a: "ಚಾರ್ಲ್ಸ್ ಬ್ಯಾಬೇಜ್"},
         {q: "ಒಂದು ಬೈಟ್ (Byte) ಎಂದರೆ ಎಷ್ಟು ಬಿಟ್ಗಳು?", o: ["4", "8", "16", "32"], a: "8"}
     ];
-
 let currentIdx=0,boysScore=0,girlsScore=0,celebrationInterval;
 
 function loadQuestion(){
@@ -248,18 +263,6 @@ function resetQuizData(){
     }
 }
 
-// Unlock audio on first click
-let audioUnlocked=false;
-document.body.addEventListener('click',()=>{
-    if(!audioUnlocked){
-        const fwSound=document.getElementById("fw-sound");
-        fwSound.play().catch(()=>{});
-        fwSound.pause();
-        fwSound.currentTime=0;
-        audioUnlocked=true;
-    }
-},{once:true});
-
 // Fireworks
 function explodeFirework(container){
     const centerX = Math.random()*window.innerWidth;
@@ -277,33 +280,16 @@ function explodeFirework(container){
         container.appendChild(f);
         const vx=Math.cos(angle)*dist;
         const vy=Math.sin(angle)*dist;
-        f.animate([{transform:"translate(0,0)", opacity:1},{transform:`translate(${vx}px,${vy}px)`, opacity:0}],{duration:1200,easing:"ease-out"});
-        for(let s=0;s<5;s++){
-            const spark=document.createElement("div");
-            spark.className="spark";
-            spark.style.left=centerX+"px"; spark.style.top=centerY+"px";
-            spark.style.backgroundColor=color;
-            container.appendChild(spark);
-            const sparkAngle = angle + (Math.random()-0.5);
-            const sparkDist = dist*Math.random();
-            const sx = Math.cos(sparkAngle)*sparkDist;
-            const sy = Math.sin(sparkAngle)*sparkDist;
-            spark.animate([{transform:"translate(0,0)", opacity:1},{transform:`translate(${sx}px,${sy}px)`, opacity:0}],{duration:1000+Math.random()*500,easing:"ease-out"});
-            setTimeout(()=>spark.remove(),1200);
-        }
+        f.animate([{transform:"translate(0,0)", opacity:1},{transform:`translate(${vx}px,${vy}px)`, opacity:0}],{duration:1200, easing:"ease-out"});
         setTimeout(()=>f.remove(),1300);
     }
-    if(audioUnlocked){ fwSound.currentTime=0; fwSound.play(); }
+    fwSound.currentTime=0; fwSound.play();
 }
 
 function startContinuousCelebration(){
     const container=document.getElementById("fireworks-container");
     celebrationInterval=setInterval(()=>{ explodeFirework(container); },500);
 }
-
-loadQuestion();
 </script>
-
 </body>
 </html>
-
