@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="kn">
 <head>
@@ -290,6 +291,12 @@ function startContinuousCelebration(){
     const container=document.getElementById("fireworks-container");
     celebrationInterval=setInterval(()=>{ explodeFirework(container); },500);
 }
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+
+    alert("⚠️ Right-click is disabled!🙏");
+  });
+window.onload = loadQuestion;
 </script>
 </body>
 </html>
